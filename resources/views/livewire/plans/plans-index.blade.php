@@ -72,7 +72,7 @@
                                     {{ Number::currency($plan->price, 'BRL') }}
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <a href="#"
+                                    <a wire:navigate href="{{ route('plans.show', $plan->id) }}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><x-icons.eye-on /></a>
                                 </td>
                             </tr>

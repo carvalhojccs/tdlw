@@ -5,10 +5,20 @@
 </x-slot>
 
 <div class="py-12">
+
+    <div x-data="{ showToast: @js($showToast), toastMessage: @js($toastMessage) }" x-init="if (showToast) { setTimeout(() => showToast = false, 5000); }">
+        <template x-if="showToast">
+            <div class="fixed top-0 right-0 flex items-center justify-between p-4 m-4 text-white bg-green-500 rounded shadow">
+                <span x-text="toastMessage"></span>
+                <button @click="showToast = false" class="ml-4 font-bold text-white">&times;</button>
+            </div>
+        </template>
+    </div>
+
     <div class="mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <x-primary-button>{{ __('New plan') }}</x-primary-button>
+                <x-primary-button wire:navigate href="{{ route('plans.create') }}">{{ __('New plan') }}</x-primary-button>
 
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg py-2">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -12,6 +12,8 @@ class PlansIndex extends Component
     public function render()
     {
         return view('livewire.plans.plans-index', [
+            'showToast' => session()->has('plans-toast'),
+            'toastMessage' => session('plans-toast'),
             'plans' => Plan::all(),
         ]);
     }

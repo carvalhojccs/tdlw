@@ -37,6 +37,28 @@
                     {{ __('Description') }}
                 </label>
             </div>
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-5 group">
+                    <span
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 border-0 border-b-2 focus:outline-none focus:border-blue-600">
+                        {{ $plan->created_at->format('d/m/yy') }}
+                    </span>
+                    <label
+                        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">
+                        {{ __('Created at') }}
+                    </label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <span
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 border-0 border-b-2 focus:outline-none focus:border-blue-600">
+                        {{ $plan->updated_at->format('d/m/yy') }}
+                    </span>
+                    <label
+                        class="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">
+                        {{ __('Last update') }}
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -44,7 +66,7 @@
         <x-buttons.action-button action="back" wire:navigate href="{{ route('plans.index') }}">
             {{ __('Voltar') }}
         </x-buttons.action-button>
-        <x-buttons.action-button action="edit" wire:navigate href="{{--  --}}">
+        <x-buttons.action-button action="edit" wire:navigate href="{{ route('plans.edit', $plan->id) }}">
             {{ __('Editar') }}
         </x-buttons.action-button>
 

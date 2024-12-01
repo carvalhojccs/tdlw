@@ -70,7 +70,7 @@
             {{ __('Editar') }}
         </x-buttons.action-button>
 
-        <x-buttons.action-button action="delete" wire:navigate href="{{--  --}}">
+        <x-buttons.action-button action="delete" wire:click='delete({{ $plan->id }})' wire:confirm='Are you sure you want to delete this plan?'>
             {{ __('Deletar') }}
         </x-buttons.action-button>
 

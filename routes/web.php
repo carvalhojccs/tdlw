@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Plans\PlansEdit;
 use App\Livewire\Plans\PlansIndex;
 use App\Livewire\Plans\PlansShow;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function () {
     // Plan management
     Route::get('/plans', PlansIndex::class)->name('plans.index');
     Route::get('/plans/{plan}', PlansShow::class)->name('plans.show');
+    Route::get('/plans/{plan}/edit', PlansEdit::class)->name('plans.edit');
 });
 
 require __DIR__.'/auth.php';

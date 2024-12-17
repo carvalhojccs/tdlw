@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Plan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,8 @@ return new class extends Migration
     {
         Schema::create('detail_plans', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Plan::class);
+            $table->string('name');
             $table->timestamps();
         });
     }

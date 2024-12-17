@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\RegisterAudit;
 use App\Models\Plan;
 use Illuminate\Support\Str;
 
@@ -20,7 +21,14 @@ class PlanObserver
      */
     public function created(Plan $plan): void
     {
-        //
+        RegisterAudit::dispatch([
+            'user_id' => auth()->id(),
+            'when' => now(),
+            'event' => 'created',
+            'ip' => request()->ip(),
+            'auditable_id' => $plan->id,
+            'auditable_type' => Plan::class,
+        ]);
     }
 
     /**
@@ -28,7 +36,24 @@ class PlanObserver
      */
     public function updated(Plan $plan): void
     {
-        //
+        $old = [];
+
+        foreach ($plan->getDirty() as $dirtyKey => $dirtyValue) {
+            $old[$dirtyKey] = $plan->getOriginal($dirtyKey);
+        }
+
+        RegisterAudit::dispatch([
+            'user_id' => auth()->id(),
+            'when' => now(),
+            'event' => 'updated',
+            'ip' => request()->ip(),
+            'auditable_id' => $plan->id,
+            'auditable_type' => Plan::class,
+            'details' => [
+                'old' => $old,
+                'new' => $plan->getDirty(),
+            ]
+        ]);
     }
 
     /**

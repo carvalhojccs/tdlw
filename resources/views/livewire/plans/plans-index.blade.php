@@ -4,7 +4,7 @@
     </x-breadcrumb.breadcrumb>
 </x-slot>
 
-<div class="py-12">
+<div class="py-4">
 
     <div x-data="{ showToast: @js($showToast), toastMessage: @js($toastMessage) }" x-init="if (showToast) { setTimeout(() => showToast = false, 5000); }">
         <template x-if="showToast">
@@ -82,8 +82,15 @@
                                     {{ Number::currency($plan->price, 'BRL') }}
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <a wire:navigate href="{{ route('plans.show', $plan->id) }}"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><x-icons.eye-on /></a>
+                                    <div class="flex justify-between">
+                                        <a wire:navigate href="{{ route('plans.show', $plan->id) }}"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><x-icons.eye-on />
+                                        </a>
+                                        <a wire:navigate href="{{ route('details.plans.index', $plan->id) }}"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><x-icons.manage-search />
+                                        </a>
+                                    </div>
+
                                 </td>
                             </tr>
                             @endforeach

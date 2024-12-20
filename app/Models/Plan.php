@@ -17,8 +17,8 @@ class Plan extends Model
 
     protected $guarded = ['id'];
 
-    public function detail(): HasOne
+    public function details(): HasMany
     {
-        return $this->hasOne(DetailPlan::class);
+        return $this->hasMany(DetailPlan::class);
     }
 }
